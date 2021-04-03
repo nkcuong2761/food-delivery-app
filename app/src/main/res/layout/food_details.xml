@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/background">
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/food_details_frame">
+        <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="320dp">
+
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleType="centerCrop"
+                    android:tag="image"/>
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/overlay_reverse"/>
+            <Button
+                    android:layout_width="32dp"
+                    android:layout_height="32dp" android:tag="back"
+                    android:background="@drawable/circle_left"
+                    android:layout_marginTop="48dp" android:layout_marginLeft="24dp"/>
+        </FrameLayout>
+        <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" android:paddingLeft="24dp" android:paddingTop="24dp"
+                android:paddingRight="24dp">
+
+            <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                              android:orientation="vertical">
+                    <TextView
+                            android:text="French Fries"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto_medium"
+                            android:textColor="@color/title_color"
+                            android:tag="title"/>
+                    <TextView
+                            android:text="Aliquam erat dui, accumsan vel gravida in, pretium eget risus. In decal hac habitasse platea dictumst. Praesent vulputate iaculis risus nec cursus. Quisque nec nisl nec odio blandit dignissim eget id diam."
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto_light"
+                            android:textColor="@color/title_color" android:textSize="12sp"
+                            android:tag="description"/>
+                </LinearLayout>
+            </ScrollView>
+            <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp" android:layout_gravity="bottom"
+                    android:layout_marginBottom="24dp">
+
+                <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent" android:gravity="center">
+                    <Button
+                            android:layout_width="32dp"
+                            android:layout_height="32dp" android:background="@drawable/remove"/>
+                    <TextView
+                            android:text="1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" android:fontFamily="@font/roboto_medium"
+                            android:textSize="18sp" android:textColor="@color/title_color"
+                            android:layout_marginLeft="8dp" android:layout_marginRight="8dp"/>
+                    <Button
+                            android:layout_width="32dp"
+                            android:layout_height="32dp" android:background="@drawable/add" android:id="@+id/add1"
+                            android:layout_weight="1"/>
+                </LinearLayout>
+                <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content" android:layout_height="match_parent"
+                        android:paddingLeft="@dimen/marginLeftRight"
+                        android:paddingRight="@dimen/marginLeftRight"
+                        android:layout_gravity="right"
+                        android:id="@+id/add_to_cart"
+                        android:background="@drawable/bordered_button"
+                        android:gravity="center">
+                    <TextView
+                            android:text="Add to cart "
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto_black"
+                            android:textColor="@color/title_color"/>
+                    <TextView
+                            android:text="($"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto_black"
+                            android:textColor="@color/colorPrimaryDark"/>
+                    <TextView
+                            android:text="9"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto_black"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:tag="price"/>
+                    <TextView
+                            android:text=")"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto_black"
+                            android:textColor="@color/colorPrimaryDark"/>
+                </LinearLayout>
+            </FrameLayout>
+        </FrameLayout>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

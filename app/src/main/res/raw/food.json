@@ -1,0 +1,28 @@
+{
+	"menu": [
+		{
+			"name": "Pizza 1",
+			"price": 19,
+			"image": "@raw/chad_montano_mqt0asuoicu_unsplash",
+			"description": "Lorem ipsum dolar sit amet"
+		},
+		{
+			"name": "Pizza 2",
+			"price": 18,
+			"image": "@raw/likemeat_cbnauxsztfo_unsplash",
+			"description": "Lorem ipsum dolar sit amet"
+		},
+		{
+			"name": "Pizza",
+			"price": 17,
+			"image": "@raw/masimo_grabar_nzhrslhc6cs_unsplash",
+			"description": "Lorem ipsum dolar sit amet"
+		},
+		{
+			"name": "French Fries",
+			"price": 9,
+			"image": "@raw/louis_hansel_shotsoflouis_vi0kzuoe0_8_unsplash",
+			"description": "Lorem ipsum dolar sit amet"
+		}
+	]
+}

@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">DemoApp</string>
+    <string name="welcome_text">Hello! I\'m a droid.</string>
+    <string name="search_hint">search_hint</string>
+</resources>

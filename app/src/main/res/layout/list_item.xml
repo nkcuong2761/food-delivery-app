@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+       xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:layout_marginBottom="12dp">
+        <com.makeramen.roundedimageview.RoundedImageView
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:scaleType="centerCrop"
+                app:riv_corner_radius="12dp"
+                android:tag="image"/>
+        <Space
+                android:layout_width="12dp"
+                android:layout_height="match_parent"/>
+        <FrameLayout android:layout_width="match_parent" android:layout_height="match_parent">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                          android:orientation="vertical">
+                <LinearLayout
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                    <TextView
+                            android:text="French Fries"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto_medium"
+                            android:textColor="@color/title_color"
+                            android:tag="name"/>
+                    <Space
+                            android:layout_width="4dp"
+                            android:layout_height="match_parent"/>
+                    <ImageView
+                            android:layout_width="12dp"
+                            android:layout_height="12dp"
+                            app:srcCompat="@drawable/star"/>
+                </LinearLayout>
+                <TextView
+                        android:text="Fries, originated in France"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_light"
+                        android:textColor="@color/title_color" android:textSize="10sp"
+                        android:tag="description"/>
+            </LinearLayout>
+            <FrameLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                         android:orientation="horizontal"
+                         android:layout_gravity="bottom">
+                <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="start">
+                    <TextView
+                            android:text="$"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto_black"
+                            android:textColor="@color/title_color" android:textSize="18sp"/>
+                    <TextView
+                            android:text="9"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto_black"
+                            android:textColor="@color/title_color" android:textSize="18sp"
+                            android:tag="price"/>
+                </LinearLayout>
+                <Button
+                        android:layout_width="24dp"
+                        android:layout_height="24dp" android:background="@drawable/add"
+                        android:layout_gravity="end"
+                        android:tag="add"/>
+            </FrameLayout>
+        </FrameLayout>
+    </LinearLayout>
+</merge>
