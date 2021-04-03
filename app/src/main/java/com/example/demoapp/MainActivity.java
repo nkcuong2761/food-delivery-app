@@ -50,36 +50,41 @@ public class MainActivity extends AppCompatActivity {
 //                new ReadJSON().execute(String.valueOf(R.raw.food));
 //            }
 //        });
-        try {
-            JSONObject jsonObject = new JSONObject(loadJSONFromAsset());
-            JSONArray jsonArray = jsonObject.getJSONArray("menu");
-            for (int i=0; i<jsonArray.length(); i++) {
-                JSONObject foodItemObject = jsonArray.getJSONObject(i);
-                menu.add(new FoodItem(
-                        foodItemObject.getString("image"),
-                        foodItemObject.getString("name"),
-                        (float) foodItemObject.getDouble("price"),
-                        foodItemObject.getString("description")
-                ));
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        CustomListAdapter adapter = new CustomListAdapter(this, R.layout.list_item, menu);
-        appetizers.setAdapter(adapter);
-//        readJSON();
+
+        readJSON();
         addListenerToFoodDetails();
         addListenerToOrderDetail();
     }
 
     private void readJSON() {
+        if(loadJSONFromAsset() != null) {
+            try {
+                JSONObject jsonObject = new JSONObject(loadJSONFromAsset());
+                JSONArray jsonArray = jsonObject.getJSONArray("menu");
+                for (int i=0; i<jsonArray.length(); i++) {
+                    JSONObject foodItemObject = jsonArray.getJSONObject(i);
+                    menu.add(new FoodItem(
+                            foodItemObject.getString("image"),
+                            foodItemObject.getString("name"),
+                            (float) foodItemObject.getDouble("price"),
+                            foodItemObject.getString("description")
+                    ));
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            CustomListAdapter adapter = new CustomListAdapter(this, R.layout.list_item, menu);
+            appetizers.setAdapter(adapter);
+        } else {
+            System.out.println("--------- DIT CON ME ---------");
+        }
     }
 
     public String loadJSONFromAsset() {
         String json;
         try {
             // Opening food.json file
-            InputStream inputStream = getAssets().open("raw/food.json");
+            InputStream inputStream = getResources().openRawResource(R.raw.food);
             int size = inputStream.available();
             byte[] buffer = new byte[size];
             // read values in the byte array
@@ -93,41 +98,6 @@ public class MainActivity extends AppCompatActivity {
         }
         return json;
     }
-
-//    class ReadJSON extends AsyncTask<String, Integer, String> {
-//        @Override
-//        protected String doInBackground(String... params) {
-//            return readURL(params[0]);
-//        }
-//
-//        @Override
-//        protected void onPostExecute(String s) {
-//            System.out.println("-------- dit con me --------");
-//            /* Re-paste the code here */
-//        }
-//    }
-//
-//    private static String readURL(String theUrl) {
-//        StringBuilder content = new StringBuilder();
-//        try {
-//            // create a url object
-//            URL url = new URL(theUrl);
-//            // create a urlConnection object
-//            URLConnection urlConnection = url.openConnection();
-//            // wrap the urlConnection in a bufferedReader
-//            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
-//            String line;
-//            // read from the urlConnection via the bufferedReader
-//            while ((line = bufferedReader.readLine()) != null) {
-//                content.append(line + "\n");
-//            }
-//            bufferedReader.close();
-//        }
-//        catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return content.toString();
-//    }
 
     private void addListenerToOrderDetail() {
         orderDetailBtn.setOnClickListener(new View.OnClickListener() {
@@ -149,15 +119,15 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
-//        for (int i=0; i<appetizers.getChildCount(); i++) {
-//            Button addBtn = appetizers.getChildAt(i).findViewWithTag("add");
-//            addBtn.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    startActivity(foodDetailPage);
-//                }
-//            });
-//        }
+        for (int i=0; i<appetizers.getChildCount(); i++) {
+            Button addBtn = appetizers.getChildAt(i).findViewWithTag("add");
+            addBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(foodDetailPage);
+                }
+            });
+        }
     }
 
     public static void addItem() {

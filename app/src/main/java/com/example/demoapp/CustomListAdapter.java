@@ -65,7 +65,8 @@ public class CustomListAdapter extends BaseAdapter {
 
 		RoundedImageView roundedImageView = convertView.findViewWithTag("image");
 //		Picasso.get().load(item.getImage()).into(roundedImageView);
-		roundedImageView.setImageResource(R.raw.cala_w6ftfbpcs9i_unsplash);
+		int resId = context.getResources().getIdentifier(item.getImage(), "raw", context.getPackageName());
+		roundedImageView.setImageResource(resId);
 
 		TextView name = convertView.findViewWithTag("name");
 		name.setText(item.getName());

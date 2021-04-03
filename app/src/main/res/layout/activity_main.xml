@@ -117,7 +117,8 @@
             <ScrollView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
-                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                <LinearLayout android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
                               android:orientation="vertical">
                     <Space
                             android:layout_width="match_parent"
@@ -160,7 +161,8 @@
                     <Space
                             android:layout_width="match_parent"
                             android:layout_height="36dp"/>
-                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    <LinearLayout android:layout_width="match_parent"
+                                  android:layout_height="match_parent"
                                   android:orientation="vertical"
                                   android:paddingLeft="24dp" android:paddingRight="24dp">
                         <TextView
@@ -169,26 +171,24 @@
                                 android:layout_height="wrap_content"
                                 android:textColor="@color/title_color" android:fontFamily="@font/roboto_black"
                         />
-                        <Space
-                                android:layout_width="match_parent"
-                                android:layout_height="12dp"/>
-<!--                        <LinearLayout-->
-<!--                                android:orientation="vertical"-->
-<!--                                android:layout_width="match_parent" android:layout_height="wrap_content"-->
-<!--                                android:divider="@drawable/divider" android:dividerHeight="1dp"-->
-<!--                                android:id="@+id/appetizers">-->
-<!--                            <include layout="@layout/list_item"/>-->
-<!--                            <include layout="@layout/list_item"/>-->
-<!--                            <include layout="@layout/list_item"/>-->
-<!--                            <include layout="@layout/list_item"/>-->
-<!--                            <include layout="@layout/list_item"/>-->
-<!--                            <include layout="@layout/list_item"/>-->
-<!--                        </LinearLayout>-->
+                        <!--                        <LinearLayout-->
+                        <!--                                android:orientation="vertical"-->
+                        <!--                                android:layout_width="match_parent" android:layout_height="wrap_content"-->
+                        <!--                                android:divider="@drawable/divider" android:dividerHeight="1dp"-->
+                        <!--                                android:id="@+id/appetizers">-->
+                        <!--                            <include layout="@layout/list_item"/>-->
+                        <!--                            <include layout="@layout/list_item"/>-->
+                        <!--                            <include layout="@layout/list_item"/>-->
+                        <!--                            <include layout="@layout/list_item"/>-->
+                        <!--                            <include layout="@layout/list_item"/>-->
+                        <!--                            <include layout="@layout/list_item"/>-->
+                        <!--                        </LinearLayout>-->
                         <ListView
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
+                                android:layout_height="500dp"
                                 android:id="@+id/appetizers"
-                                android:divider="@drawable/divider" android:dividerHeight="1dp"/>
+                                android:divider="@drawable/divider" android:dividerHeight="1dp"
+                                android:footerDividersEnabled="false"/>
                     </LinearLayout>
                 </LinearLayout>
             </ScrollView>
