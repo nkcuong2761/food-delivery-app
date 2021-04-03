@@ -21,10 +21,10 @@ package com.example.demoapp;
 public class FoodItem {
 	private String image;
 	private String name;
-	private String price;
+	private float price;
 	private String description;
 
-	public FoodItem(String image, String name, String price, String description) {
+	public FoodItem(String image, String name, float price, String description) {
 		this.image = image;
 		this.name = name;
 		this.price = price;
@@ -47,11 +47,11 @@ public class FoodItem {
 		this.name = name;
 	}
 
-	public String getPrice() {
+	public float getPrice() {
 		return price;
 	}
 
-	public void setPrice(String price) {
+	public void setPrice(float price) {
 		this.price = price;
 	}
 
