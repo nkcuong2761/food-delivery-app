@@ -19,11 +19,13 @@
 package com.example.demoapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.squareup.picasso.Picasso;
@@ -34,6 +36,7 @@ public class CustomListAdapter extends BaseAdapter {
 	ArrayList<FoodItem> foodItems;
 	Context context;
 	int resource;
+	Intent foodDetailPage;
 
 	public CustomListAdapter(Context context, int resource, ArrayList<FoodItem> foodItems) {
 		this.foodItems = foodItems;
@@ -61,7 +64,7 @@ public class CustomListAdapter extends BaseAdapter {
 		if (convertView == null) {
 			convertView = LayoutInflater.from(context).inflate(resource, parent, false);
 		}
-		FoodItem item = foodItems.get(position);
+		final FoodItem item = foodItems.get(position);
 
 		RoundedImageView roundedImageView = convertView.findViewWithTag("image");
 //		Picasso.get().load(item.getImage()).into(roundedImageView);
@@ -76,6 +79,17 @@ public class CustomListAdapter extends BaseAdapter {
 
 		TextView description = convertView.findViewWithTag("description");
 		description.setText(item.getDescription());
+
+		// Button listener
+		foodDetailPage = new Intent(context, FoodDetailsActivity.class);
+		Button add = convertView.findViewWithTag("add");
+		add.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				foodDetailPage.putExtra("THE_ITEM", item);
+				context.startActivity(foodDetailPage);
+			}
+		});
 
 		return convertView;
 	}

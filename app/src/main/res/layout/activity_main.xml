@@ -213,7 +213,14 @@
                         android:layout_height="24dp" app:srcCompat="@drawable/bag" android:id="@+id/imageView"
                         android:layout_marginRight="4dp"/>
                 <TextView
-                        android:text="1 item"
+                        android:text="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:layout_weight="1"
+                        android:fontFamily="@font/roboto_black"
+                        android:textColor="@color/title_color"
+                        android:tag="num_item"/>
+                <TextView
+                        android:text=" item"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" android:layout_weight="1"
                         android:fontFamily="@font/roboto_black"
@@ -223,12 +230,25 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" app:srcCompat="@drawable/divider_vertical"
                     android:id="@+id/imageView2" android:layout_gravity="center"/>
-            <TextView
-                    android:text="$9.00"
+            <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:layout_weight="1"
-                    android:fontFamily="@font/roboto_black" android:textColor="@color/colorPrimaryDark"
-                    android:layout_gravity="center|right"/>
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center|right"
+                    android:gravity="center">
+                <TextView
+                        android:text="$"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_black"
+                        android:textColor="@color/colorPrimaryDark"/>
+                <TextView
+                        android:text="0"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_black"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:tag="total_bill"/>
+            </LinearLayout>
         </FrameLayout>
     </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

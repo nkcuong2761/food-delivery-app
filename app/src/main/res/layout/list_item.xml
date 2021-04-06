@@ -78,7 +78,8 @@
                         android:layout_width="24dp"
                         android:layout_height="24dp" android:background="@drawable/add"
                         android:layout_gravity="end"
-                        android:tag="add"/>
+                        android:tag="add"
+                        android:focusable="false"/>
             </FrameLayout>
         </FrameLayout>
     </LinearLayout>

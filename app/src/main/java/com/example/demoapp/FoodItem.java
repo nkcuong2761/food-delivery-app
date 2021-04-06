@@ -18,7 +18,10 @@
  */
 package com.example.demoapp;
 
-public class FoodItem {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class FoodItem implements Parcelable {
 	private String image;
 	private String name;
 	private float price;
@@ -32,6 +35,26 @@ public class FoodItem {
 		this.description = description;
 		this.longDescription = longDescription;
 	}
+
+	protected FoodItem(Parcel in) {
+		image = in.readString();
+		name = in.readString();
+		price = in.readFloat();
+		description = in.readString();
+		longDescription = in.readString();
+	}
+
+	public static final Creator<FoodItem> CREATOR = new Creator<FoodItem>() {
+		@Override
+		public FoodItem createFromParcel(Parcel in) {
+			return new FoodItem(in);
+		}
+
+		@Override
+		public FoodItem[] newArray(int size) {
+			return new FoodItem[size];
+		}
+	};
 
 	public String getImage() {
 		return image;
@@ -71,5 +94,19 @@ public class FoodItem {
 
 	public void setLongDescription(String longDescription) {
 		this.longDescription = longDescription;
+	}
+
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeString(image);
+		dest.writeString(name);
+		dest.writeFloat(price);
+		dest.writeString(description);
+		dest.writeString(longDescription);
 	}
 }
