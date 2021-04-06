@@ -23,12 +23,14 @@ public class FoodItem {
 	private String name;
 	private float price;
 	private String description;
+	private String longDescription;
 
-	public FoodItem(String image, String name, float price, String description) {
+	public FoodItem(String image, String name, float price, String description, String longDescription) {
 		this.image = image;
 		this.name = name;
 		this.price = price;
 		this.description = description;
+		this.longDescription = longDescription;
 	}
 
 	public String getImage() {
@@ -61,5 +63,13 @@ public class FoodItem {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public String getLongDescription() {
+		return longDescription;
+	}
+
+	public void setLongDescription(String longDescription) {
+		this.longDescription = longDescription;
 	}
 }

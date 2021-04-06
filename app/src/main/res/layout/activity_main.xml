@@ -156,6 +156,10 @@
                                         android:layout_width="12dp"
                                         android:layout_height="wrap_content" android:layout_weight="1"/>
                             </LinearLayout>
+<!--                            <com.example.demoapp.ExpandedListView -->
+<!--                                    android:layout_width="wrap_content"-->
+<!--                                    android:layout_height="match_parent"-->
+<!--                                    android:id="@+id/new_dishes"/>-->
                         </HorizontalScrollView>
                     </LinearLayout>
                     <Space
@@ -169,25 +173,21 @@
                                 android:text="Appetizers"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:textColor="@color/title_color" android:fontFamily="@font/roboto_black"
-                        />
-                        <!--                        <LinearLayout-->
-                        <!--                                android:orientation="vertical"-->
-                        <!--                                android:layout_width="match_parent" android:layout_height="wrap_content"-->
-                        <!--                                android:divider="@drawable/divider" android:dividerHeight="1dp"-->
-                        <!--                                android:id="@+id/appetizers">-->
-                        <!--                            <include layout="@layout/list_item"/>-->
-                        <!--                            <include layout="@layout/list_item"/>-->
-                        <!--                            <include layout="@layout/list_item"/>-->
-                        <!--                            <include layout="@layout/list_item"/>-->
-                        <!--                            <include layout="@layout/list_item"/>-->
-                        <!--                            <include layout="@layout/list_item"/>-->
-                        <!--                        </LinearLayout>-->
-                        <ListView
+                                android:textColor="@color/title_color"
+                                android:fontFamily="@font/roboto_black"/>
+<!--                        <ListView-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="fill_parent"-->
+<!--                                android:id="@+id/appetizers"-->
+<!--                                android:divider="@color/colorPrimary" android:dividerHeight="1dp"-->
+<!--                                android:footerDividersEnabled="false"/>-->
+                        <com.example.demoapp.ExpandedListView
                                 android:layout_width="match_parent"
-                                android:layout_height="500dp"
+                                android:layout_height="wrap_content"
                                 android:id="@+id/appetizers"
-                                android:divider="@drawable/divider" android:dividerHeight="1dp"
+                                android:scrollbars="none"
+                                android:overScrollFooter="@color/transparent"
+                                android:divider="@color/colorPrimary" android:dividerHeight="1dp"
                                 android:footerDividersEnabled="false"/>
                     </LinearLayout>
                 </LinearLayout>

@@ -40,10 +40,10 @@
                     <Space
                             android:layout_width="4dp"
                             android:layout_height="match_parent"/>
-                    <ImageView
-                            android:layout_width="12dp"
-                            android:layout_height="12dp"
-                            app:srcCompat="@drawable/star"/>
+<!--                    <ImageView-->
+<!--                            android:layout_width="12dp"-->
+<!--                            android:layout_height="12dp"-->
+<!--                            app:srcCompat="@drawable/star"/>-->
                 </LinearLayout>
                 <TextView
                         android:text="Fries, originated in France"

@@ -46,14 +46,14 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/roboto_medium"
                             android:textColor="@color/title_color"
-                            android:tag="title"/>
+                            android:tag="name"/>
                     <TextView
                             android:text="Aliquam erat dui, accumsan vel gravida in, pretium eget risus. In decal hac habitasse platea dictumst. Praesent vulputate iaculis risus nec cursus. Quisque nec nisl nec odio blandit dignissim eget id diam."
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/roboto_light"
                             android:textColor="@color/title_color" android:textSize="12sp"
-                            android:tag="description"/>
+                            android:tag="long_description"/>
                 </LinearLayout>
             </ScrollView>
             <FrameLayout

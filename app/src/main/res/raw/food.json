@@ -1,28 +1,55 @@
 {
-	"menu": [
+	"newDishes": [
 		{
-			"name": "Pizza 1",
-			"price": 19,
+			"name": "Seafood Pizza",
+			"price": 24,
 			"image": "chad_montano_mqt0asuoicu_unsplash",
-			"description": "Lorem ipsum dolar sit amet"
+			"description": "Lorem ipsum dolar sit amet",
+			"longDescription": "Aliquam erat dui, accumsan vel gravida in, pretium eget risus. In hac habitasse platea dictumst. Praesent vulputate iaculis risus nec cursus. Quisque nec nisl nec odio blandit dignissim eget id diam."
 		},
 		{
-			"name": "Pizza 2",
-			"price": 18,
-			"image": "likemeat_cbnauxsztfo_unsplash",
-			"description": "Lorem ipsum dolar sit amet"
-		},
-		{
-			"name": "Pizza",
-			"price": 17,
+			"name": "For \"Peace\"",
+			"price": 22.39,
 			"image": "masimo_grabar_nzhrslhc6cs_unsplash",
-			"description": "Lorem ipsum dolar sit amet"
+			"description": "Lorem ipsum dolar sit amet",
+			"longDescription": "Aliquam erat dui, accumsan vel gravida in, pretium eget risus. In hac habitasse platea dictumst. Praesent vulputate iaculis risus nec cursus. Quisque nec nisl nec odio blandit dignissim eget id diam."
 		},
+		{
+			"name": "The \"Basic\"",
+			"price": 27,
+			"image": "likemeat_cbnauxsztfo_unsplash",
+			"description": "Lorem ipsum dolar sit amet",
+			"longDescription": "Aliquam erat dui, accumsan vel gravida in, pretium eget risus. In hac habitasse platea dictumst. Praesent vulputate iaculis risus nec cursus. Quisque nec nisl nec odio blandit dignissim eget id diam."
+		}
+	],
+	"appetizers": [
 		{
 			"name": "French Fries",
 			"price": 9,
 			"image": "louis_hansel_shotsoflouis_vi0kzuoe0_8_unsplash",
-			"description": "Lorem ipsum dolar sit amet"
+			"description": "Lorem ipsum dolar sit amet",
+			"longDescription": "Aliquam erat dui, accumsan vel gravida in, pretium eget risus. In hac habitasse platea dictumst. Praesent vulputate iaculis risus nec cursus. Quisque nec nisl nec odio blandit dignissim eget id diam."
+		},
+		{
+			"name": "Pumpkin soup",
+			"price": 6.99,
+			"image": "cala_w6ftfbpcs9i_unsplash",
+			"description": "Lorem ipsum dolar sit amet",
+			"longDescription": "Aliquam erat dui, accumsan vel gravida in, pretium eget risus. In hac habitasse platea dictumst. Praesent vulputate iaculis risus nec cursus. Quisque nec nisl nec odio blandit dignissim eget id diam."
+		},
+		{
+			"name": "Salad",
+			"price": 11.79,
+			"image": "yoav_aziz_aihjircwb3w_unsplash",
+			"description": "Lorem ipsum dolar sit amet",
+			"longDescription": "Aliquam erat dui, accumsan vel gravida in, pretium eget risus. In hac habitasse platea dictumst. Praesent vulputate iaculis risus nec cursus. Quisque nec nisl nec odio blandit dignissim eget id diam."
+		},
+		{
+			"name": "Nut",
+			"price": 9,
+			"image": "sahand_babali_yphvyh8oi_a_unsplash",
+			"description": "Lorem ipsum dolar sit amet",
+			"longDescription": "Aliquam erat dui, accumsan vel gravida in, pretium eget risus. In hac habitasse platea dictumst. Praesent vulputate iaculis risus nec cursus. Quisque nec nisl nec odio blandit dignissim eget id diam."
 		}
 	]
 }

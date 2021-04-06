@@ -13,6 +13,7 @@
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
                     app:riv_corner_radius="12dp"
+                    android:src="@mipmap/ic_launcher"
                     android:tag="image"/>
             <FrameLayout
                     android:layout_width="match_parent"
@@ -31,13 +32,14 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/roboto_medium"
                             android:textColor="@color/title_color"
-                            android:tag="title"/>
+                            android:tag="name"/>
                     <TextView
                             android:text="Shrimp, squid and pineapple"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/roboto_light" android:textSize="10sp"
-                            android:textColor="@color/title_color"/>
+                            android:textColor="@color/title_color"
+                            android:tag="description"/>
                     <FrameLayout
                             android:orientation="horizontal"
                             android:layout_width="match_parent"
@@ -59,25 +61,25 @@
                                     android:textColor="@color/title_color" android:textSize="18sp"
                                     android:tag="price"/>
                         </LinearLayout>
-                        <LinearLayout
-                                android:orientation="horizontal"
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:gravity="center|end" android:layout_gravity="end|center">
-                            <ImageView
-                                    android:layout_width="12dp"
-                                    android:layout_height="12dp"
-                                    app:srcCompat="@drawable/star"
-                            />
-                            <ImageView
-                                    android:layout_width="12dp"
-                                    android:layout_height="12dp"
-                                    app:srcCompat="@drawable/fire"/>
-                            <ImageView
-                                    android:layout_width="12dp"
-                                    android:layout_height="12dp"
-                                    app:srcCompat="@drawable/leaf"/>
-                        </LinearLayout>
+<!--                        <LinearLayout-->
+<!--                                android:orientation="horizontal"-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="match_parent"-->
+<!--                                android:gravity="center|end" android:layout_gravity="end|center">-->
+<!--                            <ImageView-->
+<!--                                    android:layout_width="12dp"-->
+<!--                                    android:layout_height="12dp"-->
+<!--                                    app:srcCompat="@drawable/star"-->
+<!--                            />-->
+<!--                            <ImageView-->
+<!--                                    android:layout_width="12dp"-->
+<!--                                    android:layout_height="12dp"-->
+<!--                                    app:srcCompat="@drawable/fire"/>-->
+<!--                            <ImageView-->
+<!--                                    android:layout_width="12dp"-->
+<!--                                    android:layout_height="12dp"-->
+<!--                                    app:srcCompat="@drawable/leaf"/>-->
+<!--                        </LinearLayout>-->
                     </FrameLayout>
                 </LinearLayout>
             </FrameLayout>
