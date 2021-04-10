@@ -1,21 +1,3 @@
-/* *****************************************
- * CSCI205 - Software Engineering and Design
- * Fall 2020
- * Instructor: Prof. Brian King
- *
- * Name: Cuong Nguyen
- * Section: Section 2
- * Date: 4/3/2021
- * Time: 12:29 PM
- *
- * Project: DemoApp
- * Package: com.example.demoapp
- * Class: CustomListAdapter
- *
- * Description:
- *
- * ****************************************
- */
 package com.example.demoapp;
 
 import android.content.Context;
@@ -28,7 +10,6 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 import com.makeramen.roundedimageview.RoundedImageView;
-import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 public class CustomListAdapter extends BaseAdapter {

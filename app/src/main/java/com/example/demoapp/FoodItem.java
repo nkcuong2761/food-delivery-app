@@ -1,21 +1,3 @@
-/* *****************************************
- * CSCI205 - Software Engineering and Design
- * Fall 2020
- * Instructor: Prof. Brian King
- *
- * Name: Cuong Nguyen
- * Section: Section 2
- * Date: 4/3/2021
- * Time: 12:27 PM
- *
- * Project: DemoApp
- * Package: com.example.demoapp
- * Class: FoodItem
- *
- * Description:
- *
- * ****************************************
- */
 package com.example.demoapp;
 
 import android.os.Parcel;
