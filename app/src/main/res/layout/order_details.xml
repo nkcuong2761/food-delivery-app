@@ -45,7 +45,8 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/your_order"
                         android:scrollbars="none"
-                        android:overScrollFooter="@color/transparent"/>
+                        android:overScrollFooter="@color/transparent"
+                        android:divider="@color/transparent"/>
                 <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" app:srcCompat="@drawable/divider_dashed"
@@ -96,12 +97,12 @@
                                 android:textColor="@color/secondaryAccent" android:textSize="18sp"
                                 android:fontFamily="@font/roboto_black"/>
                         <TextView
-                                android:text="29.2"
+                                android:text="0.0"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textColor="@color/secondaryAccent" android:textSize="18sp"
                                 android:fontFamily="@font/roboto_black"
-                                android:id="@+id/price"/>
+                                android:tag="total_bill"/>
                     </LinearLayout>
                 </FrameLayout>
                 <ImageView

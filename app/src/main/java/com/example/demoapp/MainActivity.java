@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         foodDetailPage = new Intent(this, FoodDetailsActivity.class);
         orderDetailPage = new Intent(this, OrderDetailsActivity.class);
 
-        orderDetailBtn = findViewById(R.id.order_detail_frame);
+        orderDetailBtn = findViewById(R.id.order_detail_btn);
         newDishesList = new ArrayList<>();
         newDishes = findViewById(R.id.new_dishes);
         appetizersList = new ArrayList<>();
@@ -63,8 +63,6 @@ public class MainActivity extends AppCompatActivity {
         TextView total = orderDetailBtn.findViewWithTag("total_bill");
         numItem.setText(String.valueOf(itemCounter));
         total.setText(String.valueOf(totalBill));
-
-
     }
 
     public static void resetCart() {
@@ -79,6 +77,14 @@ public class MainActivity extends AppCompatActivity {
 
     public static ArrayList<OrderItem> getOrderList() {
         return orderList;
+    }
+
+    public static int getItemCounter() {
+        return itemCounter;
+    }
+
+    public static float getTotalBill() {
+        return totalBill;
     }
 
     private class PreloadTask extends AsyncTask<Void, Void, Void> {

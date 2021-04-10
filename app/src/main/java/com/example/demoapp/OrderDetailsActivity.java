@@ -24,7 +24,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
@@ -60,6 +62,11 @@ public class OrderDetailsActivity extends AppCompatActivity {
 				public void run() {
 					OrderItemAdapter adapter = new OrderItemAdapter(context, R.layout.order_item, orderList);
 					yourOrder.setAdapter(adapter);
+					FrameLayout frame = findViewById(R.id.order_details_frame);
+					TextView numItem = frame.findViewWithTag("num_item");
+					numItem.setText(String.valueOf(MainActivity.getItemCounter()));
+					TextView bill = frame.findViewWithTag("total_bill");
+					bill.setText(String.valueOf(MainActivity.getTotalBill()));
 				}
 			});
 		}
