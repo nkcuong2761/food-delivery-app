@@ -20,14 +20,15 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
     private static int itemCounter = 0;
     private static float totalBill = 0;
-    static FrameLayout orderDetailBtn;
+    private static ArrayList<OrderItem> orderList;
 
     Intent foodDetailPage;
     Intent orderDetailPage;
 
-    ArrayList<FoodItem> newDishesList, appetizersList;
-    LinearLayout newDishes;
-    ListView appetizers;
+    private static FrameLayout orderDetailBtn;
+    private ArrayList<FoodItem> newDishesList, appetizersList;
+    private LinearLayout newDishes;
+    private ListView appetizers;
 
     private Handler mainHandler = new Handler();
 
@@ -37,28 +38,33 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final Context context = this;
-        foodDetailPage = new Intent(context, FoodDetailsActivity.class);
-        orderDetailPage = new Intent(context, OrderDetailsActivity.class);
-        //intent.putExtra(object), Bundle, Fragment
+        foodDetailPage = new Intent(this, FoodDetailsActivity.class);
+        orderDetailPage = new Intent(this, OrderDetailsActivity.class);
 
         orderDetailBtn = findViewById(R.id.order_detail_frame);
         newDishesList = new ArrayList<>();
         newDishes = findViewById(R.id.new_dishes);
         appetizersList = new ArrayList<>();
         appetizers = findViewById(R.id.appetizers);
+        orderList = new ArrayList<>();
 
         new PreloadTask(this).execute();
     }
 
-    public static void addItem(float itemPrice) {
-        orderDetailBtn.setVisibility(View.VISIBLE);
-        totalBill += itemPrice;
+    public static void addItem(FoodItem foodItem) {
+        if (orderDetailBtn.getVisibility() == View.INVISIBLE)
+            orderDetailBtn.setVisibility(View.VISIBLE);
+        totalBill += foodItem.getPrice();
         itemCounter++;
+
+        orderList.add(new OrderItem(foodItem.getName(), foodItem.getPrice(), 1));
+
         TextView numItem = orderDetailBtn.findViewWithTag("num_item");
         TextView total = orderDetailBtn.findViewWithTag("total_bill");
         numItem.setText(String.valueOf(itemCounter));
         total.setText(String.valueOf(totalBill));
+
+
     }
 
     public static void resetCart() {
@@ -71,6 +77,10 @@ public class MainActivity extends AppCompatActivity {
         total.setText(String.valueOf(totalBill));
     }
 
+    public static ArrayList<OrderItem> getOrderList() {
+        return orderList;
+    }
+
     private class PreloadTask extends AsyncTask<Void, Void, Void> {
         Context context;
 
@@ -80,13 +90,12 @@ public class MainActivity extends AppCompatActivity {
 
 //        @Override
 //        protected void onPreExecute() {
-//            super.onPreExecute();
-//            System.out.println("-----onPreExecute------");
+////            System.out.println("-----onPreExecute------");
 //        }
 
         @Override
         protected Void doInBackground(Void... voids) {
-            System.out.println("-----doInBackground------");
+//            System.out.println("-----doInBackground------");
             readJSON();
             addListenerToOrderDetail();
 //            loadNewDishes();
@@ -95,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(Void unused) {
-            System.out.println("-----onPostExecute------");
+//            System.out.println("-----onPostExecute------");
             super.onPostExecute(unused);
             addListenerToFoodDetails();
         }
@@ -136,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
                     public void run() {
                         CustomListAdapter adapter = new CustomListAdapter(context, R.layout.list_item, appetizersList);
                         appetizers.setAdapter(adapter);
-                        System.out.println(appetizers.getAdapter().getCount());
+//                        System.out.println(appetizers.getAdapter().getCount());
                     }
                 });
             } else {

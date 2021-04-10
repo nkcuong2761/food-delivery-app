@@ -40,20 +40,50 @@
                         android:layout_height="wrap_content" android:id="@+id/textView"
                         android:textColor="@color/title_color" android:fontFamily="@font/roboto_black"
                         android:layout_marginBottom="@dimen/marginBottom"/>
+                <com.example.demoapp.ExpandedListView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/your_order"
+                        android:scrollbars="none"
+                        android:overScrollFooter="@color/transparent"/>
                 <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" app:srcCompat="@drawable/divider_dashed"
-                />
+                        android:layout_marginTop="@dimen/marginBottom"/>
                 <FrameLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
-
-                    <TextView
-                            android:text="Total (2 items):"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" android:textColor="@color/title_color"
-                            android:textSize="18sp" android:fontFamily="@font/roboto_medium"
-                            android:layout_gravity="center|start"/>
+                    <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="wrap_content" android:layout_height="match_parent"
+                            android:layout_gravity="center|start"
+                            android:gravity="center">
+                        <TextView
+                                android:text="Total "
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/roboto_medium" android:textSize="18sp"
+                                android:textColor="@color/title_color"/>
+                        <TextView
+                                android:text="("
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/roboto_medium" android:textSize="18sp"
+                                android:textColor="@color/title_color"/>
+                        <TextView
+                                android:text="0"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/roboto_medium" android:textSize="18sp"
+                                android:textColor="@color/title_color"
+                                android:tag="num_item"/>
+                        <TextView
+                                android:text=" items):"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/roboto_medium" android:textSize="18sp"
+                                android:textColor="@color/title_color"/>
+                    </LinearLayout>
                     <LinearLayout
                             android:orientation="horizontal"
                             android:layout_width="wrap_content"
@@ -70,14 +100,13 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textColor="@color/secondaryAccent" android:textSize="18sp"
-                                android:fontFamily="@font/roboto_black" android:id="@+id/price"
-                        />
+                                android:fontFamily="@font/roboto_black"
+                                android:id="@+id/price"/>
                     </LinearLayout>
                 </FrameLayout>
                 <ImageView
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" app:srcCompat="@drawable/divider_dashed"
-                        android:id="@+id/imageView4"/>
+                        android:layout_height="wrap_content" app:srcCompat="@drawable/divider_dashed"/>
             </LinearLayout>
         </LinearLayout>
         <Button

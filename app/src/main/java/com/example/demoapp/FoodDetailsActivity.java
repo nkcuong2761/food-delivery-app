@@ -83,7 +83,7 @@ public class FoodDetailsActivity extends AppCompatActivity {
 			addBtn.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					MainActivity.addItem(foodItem.getPrice());
+					MainActivity.addItem(foodItem);
 					finish();
 				}
 			});
