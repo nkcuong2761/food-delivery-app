@@ -2,6 +2,7 @@ package com.example.demoapp;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -15,6 +16,8 @@ public class FoodDetailsActivity extends AppCompatActivity {
 	private TextView name;
 	private TextView longDes;
 	private TextView price;
+
+	private Handler mainHandler = new Handler();
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -61,12 +64,17 @@ public class FoodDetailsActivity extends AppCompatActivity {
 		}
 
 		private void addListenerAddToCartBtn() {
-			LinearLayout addBtn = findViewById(R.id.add_to_cart);
-			addBtn.setOnClickListener(new View.OnClickListener() {
+			mainHandler.post(new Runnable() {
 				@Override
-				public void onClick(View v) {
-					MainActivity.addItem(foodItem);
-					finish();
+				public void run() {
+					LinearLayout addBtn = findViewById(R.id.add_to_cart);
+					addBtn.setOnClickListener(new View.OnClickListener() {
+						@Override
+						public void onClick(View v) {
+							MainActivity.addItem(foodItem);
+							finish();
+						}
+					});
 				}
 			});
 		}

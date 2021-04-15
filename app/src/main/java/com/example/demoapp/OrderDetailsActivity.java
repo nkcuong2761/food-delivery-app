@@ -65,6 +65,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
 			orderBtn.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
+					MainActivity.addOrderToDb();
 					MainActivity.resetCart();
 					finish();
 				}

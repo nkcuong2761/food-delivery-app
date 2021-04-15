@@ -2,6 +2,7 @@ package com.example.demoapp;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Parcelable;
@@ -19,7 +20,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     private static int itemCounter = 0;
-    private static float totalBill = 0;
+    private static double totalBill = 0;
     private static ArrayList<OrderItem> orderList;
 
     Intent foodDetailPage;
@@ -31,6 +32,9 @@ public class MainActivity extends AppCompatActivity {
     private ListView appetizers;
 
     private Handler mainHandler = new Handler();
+
+    private static DBManager dbManager;
+    private static Cursor cursor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +51,10 @@ public class MainActivity extends AppCompatActivity {
         appetizersList = new ArrayList<>();
         appetizers = findViewById(R.id.appetizers);
         orderList = new ArrayList<>();
+
+        dbManager = new DBManager(this);
+        dbManager.open();
+        cursor = dbManager.fetch();
 
         new PreloadTask(this).execute();
     }
@@ -67,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static void resetCart() {
         orderDetailBtn.setVisibility(View.INVISIBLE);
+        orderList.clear();
         totalBill = 0;
         itemCounter = 0;
         TextView numItem = orderDetailBtn.findViewWithTag("num_item");
@@ -83,8 +92,20 @@ public class MainActivity extends AppCompatActivity {
         return itemCounter;
     }
 
-    public static float getTotalBill() {
+    public static double getTotalBill() {
         return totalBill;
+    }
+
+    public static void addOrderToDb() {
+	    System.out.println("---------Actual placed order-------");
+        System.out.println(String.valueOf(itemCounter));
+        System.out.println(String.valueOf(totalBill));
+        dbManager.insert(String.valueOf(itemCounter), String.valueOf(totalBill));
+        // Test database -> TODO: fix the bug where database only updates after restarting the app
+	    System.out.println("---------The latest order info from before refreshing the DB-------");
+        cursor.moveToLast();
+        System.out.println(cursor.getString(1));
+        System.out.println(cursor.getString(2));
     }
 
     private class PreloadTask extends AsyncTask<Void, Void, Void> {
@@ -94,17 +115,17 @@ public class MainActivity extends AppCompatActivity {
             this.context = context;
         }
 
-//        @Override
-//        protected void onPreExecute() {
-////            System.out.println("-----onPreExecute------");
-//        }
+        @Override
+        protected void onPreExecute() {
+//            System.out.println("-----onPreExecute------");
+            readJSON();
+        }
 
         @Override
         protected Void doInBackground(Void... voids) {
 //            System.out.println("-----doInBackground------");
-            readJSON();
-            addListenerToOrderDetail();
 //            loadNewDishes();
+            addListenerToOrderDetail();
             return null;
         }
 
@@ -126,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
                         newDishesList.add(new FoodItem(
                                 foodItemObject.getString("image"),
                                 foodItemObject.getString("name"),
-                                (float) foodItemObject.getDouble("price"),
+                                foodItemObject.getDouble("price"),
                                 foodItemObject.getString("description"),
                                 foodItemObject.getString("longDescription")
                         ));
@@ -138,7 +159,7 @@ public class MainActivity extends AppCompatActivity {
                         appetizersList.add(new FoodItem(
                                 foodItemObject.getString("image"),
                                 foodItemObject.getString("name"),
-                                (float) foodItemObject.getDouble("price"),
+                                foodItemObject.getDouble("price"),
                                 foodItemObject.getString("description"),
                                 foodItemObject.getString("longDescription")
                         ));

@@ -5,10 +5,10 @@ import android.os.Parcelable;
 
 public class OrderItem implements Parcelable {
 	private String name;
-	private float price;
+	private double price;
 	private int quantity;
 
-	public OrderItem(String name, float price, int quantity) {
+	public OrderItem(String name, double price, int quantity) {
 		this.name = name;
 		this.price = price;
 		this.quantity = quantity;
@@ -16,7 +16,7 @@ public class OrderItem implements Parcelable {
 
 	protected OrderItem(Parcel in) {
 		name = in.readString();
-		price = in.readFloat();
+		price = in.readDouble();
 		quantity = in.readInt();
 	}
 
@@ -40,7 +40,7 @@ public class OrderItem implements Parcelable {
 	@Override
 	public void writeToParcel(Parcel dest, int flags) {
 		dest.writeString(name);
-		dest.writeFloat(price);
+		dest.writeDouble(price);
 		dest.writeInt(quantity);
 	}
 
@@ -48,7 +48,7 @@ public class OrderItem implements Parcelable {
 		return name;
 	}
 
-	public float getPrice() {
+	public double getPrice() {
 		return price;
 	}
 
