@@ -5,8 +5,11 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 public class DBManager {
+	private static final String TAG = DBManager.class.getSimpleName();
+
 	private DBHelper dbHelper;
 	private Context context;
 	private SQLiteDatabase database;
@@ -19,9 +22,9 @@ public class DBManager {
 		dbHelper = new DBHelper(context);
 		database = dbHelper.getWritableDatabase();
 		if (dbHelper == null)
-			System.out.println("------DMM NO NULL M OI------");
+			Log.e(TAG, "dbHelper null");
 		else
-			System.out.println("------HMMMM------");
+			Log.d(TAG, "dbHelper generated successfully");
 		return this;
 	}
 

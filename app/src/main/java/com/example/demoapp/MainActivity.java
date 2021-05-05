@@ -6,17 +6,24 @@ import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Parcelable;
+import android.util.Log;
 import android.view.View;
 import android.widget.*;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import com.android.volley.*;
+import com.android.volley.toolbox.*;
 import com.makeramen.roundedimageview.RoundedImageView;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
     private static int itemCounter = 0;
@@ -36,11 +43,15 @@ public class MainActivity extends AppCompatActivity {
     private static DBManager dbManager;
     private static Cursor cursor;
 
+    private static RequestQueue requestQueue;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        requestQueue = Volley.newRequestQueue(this);
 
         foodDetailPage = new Intent(this, FoodDetailsActivity.class);
         orderDetailPage = new Intent(this, OrderDetailsActivity.class);
@@ -97,15 +108,75 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public static void addOrderToDb() {
-	    System.out.println("---------Actual placed order-------");
-        System.out.println(String.valueOf(itemCounter));
-        System.out.println(String.valueOf(totalBill));
-        dbManager.insert(String.valueOf(itemCounter), String.valueOf(totalBill));
-        // Test database -> TODO: fix the bug where database only updates after restarting the app
-	    System.out.println("---------The latest order info from before refreshing the DB-------");
-        cursor.moveToLast();
-        System.out.println(cursor.getString(1));
-        System.out.println(cursor.getString(2));
+//	    System.out.println("---------Actual placed order-------");
+//        System.out.println(String.valueOf(itemCounter));
+//        System.out.println(String.valueOf(totalBill));
+//        dbManager.insert(String.valueOf(itemCounter), String.valueOf(totalBill));
+//        // Test database -> TODO: fix the bug where database only updates after restarting the app
+//	    System.out.println("---------The latest order info from before refreshing the DB-------");
+//        cursor.moveToLast();
+//        System.out.println(cursor.getString(1));
+//        System.out.println(cursor.getString(2));
+        JSONArray array = new JSONArray();
+        for (final OrderItem orderItem : getOrderList()) {
+            JSONObject object = new JSONObject();
+            try {
+                object.put("name", orderItem.getName());
+                object.put("price", orderItem.getPrice());
+                object.put("quantity", orderItem.getQuantity());
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            array.put(object);
+        }
+        String url = "http://192.168.100.10:3000/";//192.168.100.10
+//        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
+//                Request.Method.POST,
+//                url,
+//                array,
+//                new Response.Listener<JSONArray>() {
+//                    @Override
+//                    public void onResponse(JSONArray response) {
+//                        Log.d("POST RESPONSE", response.toString());
+//                    }
+//                },
+//                new Response.ErrorListener() {
+//                    @Override
+//                    public void onErrorResponse(VolleyError error) {
+//                        Log.e("POST RESPONSE", error.toString());
+//                    }
+//                }
+//        );
+        final String requestBody = array.toString();
+        StringRequest stringRequest = new StringRequest(
+                Request.Method.POST,
+                url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d("POST RESPONSE", response);
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("POST RESPONSE", error.toString());
+                    }
+                }
+        ) {
+            @Override
+            public String getBodyContentType() {
+                return "application/x-www-form-urlencoded";
+            }
+
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("orderz", requestBody);
+                return params;
+            }
+        };
+        requestQueue.add(stringRequest);
     }
 
     private class PreloadTask extends AsyncTask<Void, Void, Void> {
