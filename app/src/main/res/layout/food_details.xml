@@ -28,7 +28,7 @@
             <Button
                     android:layout_width="32dp"
                     android:layout_height="32dp" android:tag="back"
-                    android:background="@drawable/circle_left"
+                    android:background="@drawable/close"
                     android:layout_marginTop="48dp" android:layout_marginLeft="24dp"/>
         </FrameLayout>
         <FrameLayout

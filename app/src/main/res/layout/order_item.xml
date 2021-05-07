@@ -24,7 +24,7 @@
                             android:textColor="@color/colorSecondary"
                             android:tag="quantity"/>
                     <TextView
-                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:layout_width="15dp" android:layout_height="match_parent"
                             android:text="x"
                             android:fontFamily="@font/roboto_medium"
                             android:textColor="@color/colorSecondary"/>

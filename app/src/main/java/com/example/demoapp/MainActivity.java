@@ -70,6 +70,10 @@ public class MainActivity extends AppCompatActivity {
         new PreloadTask(this).execute();
     }
 
+    public void addJSONArrayRequest(JsonArrayRequest request) {
+        requestQueue.add(request);
+    }
+
     public static void addItem(FoodItem foodItem) {
         if (orderDetailBtn.getVisibility() == View.INVISIBLE)
             orderDetailBtn.setVisibility(View.VISIBLE);
@@ -112,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
 //        System.out.println(String.valueOf(itemCounter));
 //        System.out.println(String.valueOf(totalBill));
 //        dbManager.insert(String.valueOf(itemCounter), String.valueOf(totalBill));
-//        // Test database -> TODO: fix the bug where database only updates after restarting the app
+//        // Test database
 //	    System.out.println("---------The latest order info from before refreshing the DB-------");
 //        cursor.moveToLast();
 //        System.out.println(cursor.getString(1));
@@ -129,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
             }
             array.put(object);
         }
-        String url = "http://192.168.100.10:3000/";//192.168.100.10
+        String url = "http://192.168.100.10:3000/";// 192.168.100.10
 //        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
 //                Request.Method.POST,
 //                url,
@@ -172,6 +176,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
+                params.put("num_items", String.valueOf(itemCounter));
+                params.put("bill", String.valueOf(totalBill));
                 params.put("orderz", requestBody);
                 return params;
             }
