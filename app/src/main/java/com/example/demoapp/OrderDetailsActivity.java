@@ -16,6 +16,7 @@ import java.util.ArrayList;
 public class OrderDetailsActivity extends AppCompatActivity {
 	private ArrayList<OrderItem> orderList;
 	private ListView yourOrder;
+	private FrameLayout frame;
 
 	private Handler mainHandler = new Handler();
 
@@ -24,7 +25,14 @@ public class OrderDetailsActivity extends AppCompatActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.order_details);
 
-		orderList = MainActivity.getOrderList();
+		Bundle extras = getIntent().getExtras();
+
+		frame = findViewById(R.id.order_details_frame);
+		frame.findViewWithTag("back_header").setVisibility(extras.getInt("BACK_HEADER_VIS"));
+		frame.findViewWithTag("close_header").setVisibility(extras.getInt("CLOSE_HEADER_VIS"));
+		findViewById(R.id.order_btn).setVisibility(extras.getInt("ORDER_BTN_VIS"));
+
+		orderList = extras.getParcelableArrayList("ORDER_LIST");
 		yourOrder = findViewById(R.id.your_order);
 
 		new PreloadTask(this).execute();
@@ -44,7 +52,6 @@ public class OrderDetailsActivity extends AppCompatActivity {
 				public void run() {
 					OrderItemAdapter adapter = new OrderItemAdapter(context, R.layout.order_item, orderList);
 					yourOrder.setAdapter(adapter);
-					FrameLayout frame = findViewById(R.id.order_details_frame);
 					TextView numItem = frame.findViewWithTag("num_item");
 					numItem.setText(String.valueOf(MainActivity.getItemCounter()));
 					TextView bill = frame.findViewWithTag("total_bill");
@@ -66,7 +73,6 @@ public class OrderDetailsActivity extends AppCompatActivity {
 				@Override
 				public void onClick(View v) {
 					MainActivity.addOrderToDb();
-					MainActivity.resetCart();
 					finish();
 				}
 			});

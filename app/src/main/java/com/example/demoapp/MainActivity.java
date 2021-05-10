@@ -9,7 +9,6 @@ import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.*;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import com.android.volley.*;
@@ -20,7 +19,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -32,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
     Intent foodDetailPage;
     Intent orderDetailPage;
+    Intent historyPage;
 
     private static FrameLayout orderDetailBtn;
     private ArrayList<FoodItem> newDishesList, appetizersList;
@@ -40,8 +39,8 @@ public class MainActivity extends AppCompatActivity {
 
     private Handler mainHandler = new Handler();
 
-    private static DBManager dbManager;
-    private static Cursor cursor;
+//    private static DBManager dbManager;
+//    private static Cursor cursor;
 
     private static RequestQueue requestQueue;
 
@@ -53,9 +52,6 @@ public class MainActivity extends AppCompatActivity {
 
         requestQueue = Volley.newRequestQueue(this);
 
-        foodDetailPage = new Intent(this, FoodDetailsActivity.class);
-        orderDetailPage = new Intent(this, OrderDetailsActivity.class);
-
         orderDetailBtn = findViewById(R.id.order_detail_btn);
         newDishesList = new ArrayList<>();
         newDishes = findViewById(R.id.new_dishes);
@@ -63,15 +59,11 @@ public class MainActivity extends AppCompatActivity {
         appetizers = findViewById(R.id.appetizers);
         orderList = new ArrayList<>();
 
-        dbManager = new DBManager(this);
-        dbManager.open();
-        cursor = dbManager.fetch();
+//        dbManager = new DBManager(this);
+//        dbManager.open();
+//        cursor = dbManager.fetch();
 
         new PreloadTask(this).execute();
-    }
-
-    public void addJSONArrayRequest(JsonArrayRequest request) {
-        requestQueue.add(request);
     }
 
     public static void addItem(FoodItem foodItem) {
@@ -168,6 +160,9 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
         ) {
+            String numItem = String.valueOf(MainActivity.getItemCounter());
+            String bill = String.valueOf(MainActivity.getTotalBill());
+
             @Override
             public String getBodyContentType() {
                 return "application/x-www-form-urlencoded";
@@ -176,13 +171,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("num_items", String.valueOf(itemCounter));
-                params.put("bill", String.valueOf(totalBill));
+                params.put("num_items", numItem);
+                params.put("bill", bill);
                 params.put("orderz", requestBody);
                 return params;
             }
         };
         requestQueue.add(stringRequest);
+        // Reset cart
+        resetCart();
     }
 
     private class PreloadTask extends AsyncTask<Void, Void, Void> {
@@ -194,6 +191,9 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPreExecute() {
+	        foodDetailPage = new Intent(context, FoodDetailsActivity.class);
+	        orderDetailPage = new Intent(context, OrderDetailsActivity.class);
+	        historyPage = new Intent(context, OrderHistoryActivity.class);
 //            System.out.println("-----onPreExecute------");
             readJSON();
         }
@@ -203,6 +203,7 @@ public class MainActivity extends AppCompatActivity {
 //            System.out.println("-----doInBackground------");
 //            loadNewDishes();
             addListenerToOrderDetail();
+            addListenerHistoryBtn();
             return null;
         }
 
@@ -315,9 +316,23 @@ public class MainActivity extends AppCompatActivity {
             orderDetailBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                	orderDetailPage.putExtra("BACK_HEADER_VIS", View.VISIBLE);
+                	orderDetailPage.putExtra("CLOSE_HEADER_VIS", View.INVISIBLE);
+                	orderDetailPage.putExtra("ORDER_BTN_VIS", View.VISIBLE);
+                	orderDetailPage.putExtra("ORDER_LIST", getOrderList());
                     startActivity(orderDetailPage);
                 }
             });
+        }
+
+        private void addListenerHistoryBtn() {
+        	Button historyBtn = findViewById(R.id.bag_btn);
+        	historyBtn.setOnClickListener(new View.OnClickListener() {
+		        @Override
+		        public void onClick(View v) {
+			        startActivity(historyPage);
+		        }
+	        });
         }
     }
 

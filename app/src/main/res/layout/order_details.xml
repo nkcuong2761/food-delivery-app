@@ -17,18 +17,32 @@
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-            <FrameLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-                         android:layout_marginBottom="@dimen/marginBottom">
-                <Button android:layout_width="32dp" android:layout_height="32dp"
-                        android:background="@drawable/circle_left"
-                        android:tag="back"
-                        android:layout_gravity="left"/>
-                <TextView
-                        android:layout_width="wrap_content" android:layout_height="wrap_content"
-                        android:text="Order details"
-                        android:fontFamily="@font/roboto_black"
-                        android:textColor="@color/colorSecondary"
-                        android:textSize="18sp" android:layout_gravity="right|center_vertical"/>
+            <FrameLayout android:layout_width="match_parent" android:layout_height="wrap_content">
+                <FrameLayout
+                        android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/marginBottom"
+                        android:tag="back_header">
+                    <Button android:layout_width="32dp" android:layout_height="32dp"
+                            android:background="@drawable/circle_left"
+                            android:tag="back"
+                            android:layout_gravity="left"/>
+                    <TextView
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="Order details"
+                            android:fontFamily="@font/roboto_black"
+                            android:textColor="@color/colorSecondary"
+                            android:textSize="18sp" android:layout_gravity="right|center_vertical"/>
+                </FrameLayout>
+                <FrameLayout
+                        android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/marginBottom"
+                        android:tag="close_header"
+                        android:visibility="invisible">
+                    <Button android:layout_width="24dp" android:layout_height="24dp"
+                            android:background="@drawable/close"
+                            android:tag="back"
+                            android:layout_gravity="left"/>
+                </FrameLayout>
             </FrameLayout>
             <LinearLayout
                     android:orientation="vertical"

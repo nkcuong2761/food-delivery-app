@@ -5,37 +5,44 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/background">
-    <FrameLayout
+    <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent" app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="@dimen/marginTop"
-            android:id="@+id/order_details_frame">
-        <LinearLayout
-                android:orientation="vertical"
+            android:id="@+id/history_page_frame">
+        <FrameLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                     android:layout_marginBottom="@dimen/marginBottom"
+                     android:layout_marginLeft="@dimen/marginLeftRight"
+                     android:layout_marginRight="@dimen/marginLeftRight">
+            <Button android:layout_width="32dp" android:layout_height="32dp"
+                    android:background="@drawable/circle_left"
+                    android:tag="back"
+                    android:layout_gravity="left"/>
+            <TextView
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Order history"
+                    android:fontFamily="@font/roboto_black"
+                    android:textColor="@color/colorSecondary"
+                    android:textSize="18sp" android:layout_gravity="right|center_vertical"/>
+        </FrameLayout>
+        <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-            <FrameLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-                         android:layout_marginBottom="@dimen/marginBottom"
-                         android:layout_marginLeft="@dimen/marginLeftRight"
-                         android:layout_marginRight="@dimen/marginLeftRight">
-                <Button android:layout_width="32dp" android:layout_height="32dp"
-                        android:background="@drawable/circle_left"
-                        android:tag="back"
-                        android:layout_gravity="left"/>
-                <TextView
-                        android:layout_width="wrap_content" android:layout_height="wrap_content"
-                        android:text="Order history"
-                        android:fontFamily="@font/roboto_black"
-                        android:textColor="@color/colorSecondary"
-                        android:textSize="18sp" android:layout_gravity="right|center_vertical"/>
-            </FrameLayout>
-            <com.example.demoapp.ExpandedListView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/history_listview_frame"
-                    android:scrollbars="none"
-                    android:overScrollFooter="@color/transparent"
-                    android:divider="@color/transparent"/>
-        </LinearLayout>
-    </FrameLayout>
+            <LinearLayout
+                    android:layout_width="match_parent" android:layout_height="match_parent"
+                    android:orientation="vertical">
+                <com.example.demoapp.ExpandedListView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/history_listview_frame"
+                        android:scrollbars="none"
+                        android:overScrollFooter="@color/transparent"
+                        android:footerDividersEnabled="false"/>
+                <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"/>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

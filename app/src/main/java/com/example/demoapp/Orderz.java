@@ -68,4 +68,14 @@ public class Orderz implements Parcelable {
 	public ArrayList<OrderItem> getOrderList() {
 		return orderList;
 	}
+
+	@Override
+	public String toString() {
+		return "{" +
+				"itemCounter='" + itemCounter + '\'' +
+				", totalBill='" + totalBill + '\'' +
+				", time='" + time + '\'' +
+				", orderList=" + orderList +
+				'}';
+	}
 }

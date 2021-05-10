@@ -50,8 +50,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" android:layout_weight="1"/>
                     <Button
-                            android:layout_width="32dp"
-                            android:layout_height="32dp" android:background="@drawable/list"/>
+                            android:layout_width="24dp"
+                            android:layout_height="24dp" android:background="@drawable/bag_outlined"
+                            android:id="@+id/bag_btn"/>
                 </LinearLayout>
                 <!--            <Space-->
                 <!--                    android:layout_width="match_parent"-->
