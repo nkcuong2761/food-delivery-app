@@ -9,7 +9,7 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent" app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="@dimen/marginTop"
+            android:layout_marginTop="24dp"
             android:id="@+id/history_page_frame">
         <FrameLayout android:layout_width="match_parent" android:layout_height="wrap_content"
                      android:layout_marginBottom="@dimen/marginBottom"

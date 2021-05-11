@@ -17,6 +17,8 @@ public class OrderDetailsActivity extends AppCompatActivity {
 	private ArrayList<OrderItem> orderList;
 	private ListView yourOrder;
 	private FrameLayout frame;
+	private String numItems;
+	private String bill;
 
 	private Handler mainHandler = new Handler();
 
@@ -31,6 +33,8 @@ public class OrderDetailsActivity extends AppCompatActivity {
 		frame.findViewWithTag("back_header").setVisibility(extras.getInt("BACK_HEADER_VIS"));
 		frame.findViewWithTag("close_header").setVisibility(extras.getInt("CLOSE_HEADER_VIS"));
 		findViewById(R.id.order_btn).setVisibility(extras.getInt("ORDER_BTN_VIS"));
+		numItems = extras.getString("NUM_ITEMS");
+		bill = extras.getString("BILL");
 
 		orderList = extras.getParcelableArrayList("ORDER_LIST");
 		yourOrder = findViewById(R.id.your_order);
@@ -52,10 +56,10 @@ public class OrderDetailsActivity extends AppCompatActivity {
 				public void run() {
 					OrderItemAdapter adapter = new OrderItemAdapter(context, R.layout.order_item, orderList);
 					yourOrder.setAdapter(adapter);
-					TextView numItem = frame.findViewWithTag("num_item");
-					numItem.setText(String.valueOf(MainActivity.getItemCounter()));
-					TextView bill = frame.findViewWithTag("total_bill");
-					bill.setText(String.valueOf(MainActivity.getTotalBill()));
+					TextView n = frame.findViewWithTag("num_item");
+					n.setText(String.valueOf(numItems));
+					TextView b = frame.findViewWithTag("total_bill");
+					b.setText(String.valueOf(bill));
 				}
 			});
 		}
@@ -79,8 +83,15 @@ public class OrderDetailsActivity extends AppCompatActivity {
 		}
 
 		private void addListenerBackBtn() {
-			Button backBtn = findViewById(R.id.order_details_frame).findViewWithTag("back");
+			Button backBtn = frame.findViewWithTag("back");
+			Button closeBtn = frame.findViewWithTag("close");
 			backBtn.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					finish();
+				}
+			});
+			closeBtn.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
 					finish();

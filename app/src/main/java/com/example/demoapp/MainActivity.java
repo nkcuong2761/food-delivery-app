@@ -19,7 +19,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -104,15 +106,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public static void addOrderToDb() {
-//	    System.out.println("---------Actual placed order-------");
-//        System.out.println(String.valueOf(itemCounter));
-//        System.out.println(String.valueOf(totalBill));
-//        dbManager.insert(String.valueOf(itemCounter), String.valueOf(totalBill));
-//        // Test database
-//	    System.out.println("---------The latest order info from before refreshing the DB-------");
-//        cursor.moveToLast();
-//        System.out.println(cursor.getString(1));
-//        System.out.println(cursor.getString(2));
         JSONArray array = new JSONArray();
         for (final OrderItem orderItem : getOrderList()) {
             JSONObject object = new JSONObject();
@@ -125,24 +118,8 @@ public class MainActivity extends AppCompatActivity {
             }
             array.put(object);
         }
+
         String url = "http://192.168.100.10:3000/";// 192.168.100.10
-//        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
-//                Request.Method.POST,
-//                url,
-//                array,
-//                new Response.Listener<JSONArray>() {
-//                    @Override
-//                    public void onResponse(JSONArray response) {
-//                        Log.d("POST RESPONSE", response.toString());
-//                    }
-//                },
-//                new Response.ErrorListener() {
-//                    @Override
-//                    public void onErrorResponse(VolleyError error) {
-//                        Log.e("POST RESPONSE", error.toString());
-//                    }
-//                }
-//        );
         final String requestBody = array.toString();
         StringRequest stringRequest = new StringRequest(
                 Request.Method.POST,
@@ -162,6 +139,8 @@ public class MainActivity extends AppCompatActivity {
         ) {
             String numItem = String.valueOf(MainActivity.getItemCounter());
             String bill = String.valueOf(MainActivity.getTotalBill());
+            SimpleDateFormat sdf = new SimpleDateFormat("HH:mm ',' MMM dd");
+            String time = sdf.format(new Date());
 
             @Override
             public String getBodyContentType() {
@@ -173,6 +152,7 @@ public class MainActivity extends AppCompatActivity {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("num_items", numItem);
                 params.put("bill", bill);
+                params.put("time", time);
                 params.put("orderz", requestBody);
                 return params;
             }
@@ -319,6 +299,8 @@ public class MainActivity extends AppCompatActivity {
                 	orderDetailPage.putExtra("BACK_HEADER_VIS", View.VISIBLE);
                 	orderDetailPage.putExtra("CLOSE_HEADER_VIS", View.INVISIBLE);
                 	orderDetailPage.putExtra("ORDER_BTN_VIS", View.VISIBLE);
+                	orderDetailPage.putExtra("NUM_ITEMS", String.valueOf(getItemCounter()));
+                	orderDetailPage.putExtra("BILL", String.valueOf(getTotalBill()));
                 	orderDetailPage.putExtra("ORDER_LIST", getOrderList());
                     startActivity(orderDetailPage);
                 }

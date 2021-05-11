@@ -64,6 +64,8 @@ public class HistoryViewAdapter extends BaseAdapter {
 				historyDetailPage.putExtra("BACK_HEADER_VIS", View.INVISIBLE);
 				historyDetailPage.putExtra("CLOSE_HEADER_VIS", View.VISIBLE);
 				historyDetailPage.putExtra("ORDER_BTN_VIS", View.INVISIBLE);
+				historyDetailPage.putExtra("NUM_ITEMS", orderz.getItemCounter());
+				historyDetailPage.putExtra("BILL", orderz.getTotalBill());
 				historyDetailPage.putExtra("ORDER_LIST", orderz.getOrderList());
 				context.startActivity(historyDetailPage);
 			}

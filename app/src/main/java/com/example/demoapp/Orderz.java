@@ -3,8 +3,6 @@ package com.example.demoapp;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.util.Date;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class Orderz implements Parcelable {
@@ -13,12 +11,11 @@ public class Orderz implements Parcelable {
 	private String time;
 	private final ArrayList<OrderItem> orderList;
 
-	public Orderz(String itemCounter, String totalBill, ArrayList<OrderItem> orderList) {
+	public Orderz(String itemCounter, String totalBill, String time, ArrayList<OrderItem> orderList) {
 		this.itemCounter = itemCounter;
 		this.totalBill = totalBill;
+		this.time = time;
 		this.orderList = orderList;
-		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm ',' MMM dd");
-		this.time = sdf.format(new Date());
 	}
 
 	protected Orderz(Parcel in) {

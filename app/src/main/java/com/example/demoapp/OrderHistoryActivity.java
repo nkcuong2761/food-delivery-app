@@ -88,11 +88,11 @@ public class OrderHistoryActivity extends AppCompatActivity {
 						public void onResponse(JSONArray response) {
 							JSONArray jsonArray = response;
 							try {
-								for(int i=0; i<jsonArray.length(); i++) {
+								for(int i=jsonArray.length()-1; i>=0; i--) {
 									JSONObject jsonObject = jsonArray.getJSONObject(i);
 									String numItem = jsonObject.getString("num_items");
 									String bill = jsonObject.getString("bill");
-									// TODO: fix the time to be passed directly as another param in the orderz obj
+									String time = jsonObject.getString("time");
 									// Get the orderz array
 									String jsonData = jsonObject.getString("orderz");
 									JSONArray orderz = new JSONArray(jsonData);
@@ -109,7 +109,7 @@ public class OrderHistoryActivity extends AppCompatActivity {
 										}
 									}
 //									System.out.println("itemList: " + itemList);
-									Orderz orderz1 = new Orderz(numItem, bill, itemList);
+									Orderz orderz1 = new Orderz(numItem, bill, time, itemList);
 //									System.out.println("orderz1: " + orderz1);
 									orderzList.add(orderz1);
 								}

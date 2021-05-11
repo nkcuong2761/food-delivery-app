@@ -192,7 +192,7 @@
                                 android:footerDividersEnabled="false"/>
                         <Space
                                 android:layout_width="match_parent"
-                                android:layout_height="48dp" />
+                                android:layout_height="96dp" />
                     </LinearLayout>
                 </LinearLayout>
             </ScrollView>
