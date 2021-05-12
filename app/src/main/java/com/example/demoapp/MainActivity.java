@@ -66,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
 //        cursor = dbManager.fetch();
 
         new PreloadTask(this).execute();
+        new PreloadTask2(this).execute();
     }
 
     public static void addItem(FoodItem foodItem) {
@@ -181,7 +182,6 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... voids) {
 //            System.out.println("-----doInBackground------");
-//            loadNewDishes();
             addListenerToOrderDetail();
             addListenerHistoryBtn();
             return null;
@@ -257,27 +257,6 @@ public class MainActivity extends AppCompatActivity {
             return json;
         }
 
-        private void loadNewDishes() {
-            mainHandler.post(new Runnable() {
-                @Override
-                public void run() {
-                    for (int i=0; i<newDishesList.size(); i++) {
-                        FoodItem foodItem = newDishesList.get(i);
-                        FrameLayout frame = (FrameLayout) newDishes.getChildAt(i+1);//Because the LinearLayout start with a <Space/>
-                        RoundedImageView imageView = frame.findViewWithTag("image");
-                        TextView name = frame.findViewWithTag("name");
-                        TextView des = frame.findViewWithTag("description");
-                        TextView price = frame.findViewWithTag("price");
-                        int resId = context.getResources().getIdentifier(foodItem.getImage(), "raw", context.getPackageName());
-                        imageView.setImageResource(resId);
-                        name.setText(foodItem.getName());
-                        des.setText(foodItem.getDescription());
-                        price.setText(String.valueOf(foodItem.getPrice()));
-                    }
-                }
-            });
-        }
-
         private void addListenerToFoodDetails() {
             for (int i=1; i<newDishes.getChildCount()-1; i++) {
                 final FoodItem foodItem = newDishesList.get(i-1);
@@ -317,5 +296,40 @@ public class MainActivity extends AppCompatActivity {
 	        });
         }
     }
+
+	private class PreloadTask2 extends AsyncTask<Void, Void, Void> {
+		Context context;
+
+		PreloadTask2(Context context) {
+			this.context = context;
+		}
+
+		@Override
+		protected Void doInBackground(Void... voids) {
+			loadNewDishes();
+			return null;
+		}
+
+		private void loadNewDishes() {
+			mainHandler.post(new Runnable() {
+				@Override
+				public void run() {
+					for (int i=0; i<newDishesList.size(); i++) {
+						FoodItem foodItem = newDishesList.get(i);
+						FrameLayout frame = (FrameLayout) newDishes.getChildAt(i+1);//Because the LinearLayout start with a <Space/>
+						RoundedImageView imageView = frame.findViewWithTag("image");
+						TextView name = frame.findViewWithTag("name");
+						TextView des = frame.findViewWithTag("description");
+						TextView price = frame.findViewWithTag("price");
+						int resId = context.getResources().getIdentifier(foodItem.getImage(), "raw", context.getPackageName());
+						imageView.setImageResource(resId);
+						name.setText(foodItem.getName());
+						des.setText(foodItem.getDescription());
+						price.setText(String.valueOf(foodItem.getPrice()));
+					}
+				}
+			});
+		}
+	}
 
 }
