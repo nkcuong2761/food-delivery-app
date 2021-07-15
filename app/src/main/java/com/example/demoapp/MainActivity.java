@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
     private ListView appetizers;
 
     private Handler mainHandler = new Handler();
-
+//
 //    private static DBManager dbManager;
 //    private static Cursor cursor;
 
